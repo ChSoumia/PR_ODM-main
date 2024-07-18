@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+
+  <script src="https://unpkg.com/@popperjs/core@^2.0.0"></script>
+  <script src="/javascripts/jquery-3.2.1.min.js"></script>
+  <script src="/javascripts/bootstrap.js"></script>
+  <script src="/javascripts/bootstrap-datepicker.js"></script>
+  <link rel='stylesheet' href='/stylesheets/bootstrap-datepicker.css' />
+  <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+  <div class="container-fluid">
+
+    <div class="row">
+        <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
+          <div id="brand" class="col-xl-2 col-lg-3 col-md-3">
+            <a class="navbar-brand" href="/home"><b>Bases de Datos</b></a>
+            <button style="float: right;" class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+          <div id="items" class="col-xl-10 col-lg-9 col-md-9">
+            <div class="navbar-collapse collapse" id="navbarColor01" style="">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="/patients"><i style="margin-right: 15.5px; margin-left: 5px;" class="fas fa-user-injured"></i> <b>Pacientes</b></a>
+                </li>
+              </ul>
+            </div>  
+          </div>        
+        </nav>
+    </div>
+
+
+    <div class="row content">
+      <div class="col-xl-2 col-lg-3 d-none d-lg-block"></div>
+      <div class="col-xl-8 col-lg-9 col-md-10 col-sm-11">
+        <div class="row content-info">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/home">Home</a></li>
+              <li class="breadcrumb-item"><a href="/patients">Pacientes</a></li>
+              <li class="breadcrumb-item active"><a href="#">Consulta</a></li>
+            </ol>
+        </div>
+
+        <div class="row content-info">
+          <form class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" method="POST" action="/patients/<%= patient.id %>/history?_method=PUT">
+            <fieldset>
+              <legend>Añadir consulta</legend>
+              <div class="form-group">
+                <label>Especialista</label>
+                <select class="form-control" name="specialist">
+                  <option value='Medico de cabecera'>Medico de cabecera</option>
+                  <option value='Dermatólogo'>Dermatólogo</option>
+                  <option value='Traumatologo'>Traumatologo</option>
+                  <option value='Reumatologo'>Reumatologo</option>
+                  <option value='Cardiologo'>Cardiologo</option>
+                  <option value='Endocrino'>Endocrino</option>
+                  <option value='Neumologo'>Neumologo</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Diagnostico</label>
+                <select class="form-control" name="diagnosis">
+                  <option value='Resfriado'>Resfriado</option>
+                  <option value='Escorbuto'>Escorbuto</option>
+                  <option value='Fractura de ligamento cruzado'>Fractura de ligamento cruzado</option>
+                  <option value='Esguince de tobillo'>Esguince de tobillo</option>
+                  <option value='Osteoporosis'>Osteoporosis</option>
+                  <option value='Diarrea aguda'>Diarrea aguda</option>
+                  <option value='Síndrome del tunel carpiano'>Síndrome del tunel carpiano</option>
+                  <option value='Arritmia'>Arritmia</option>
+                  <option value='Dermatitis'>Dermatitis</option>
+                  <option value='Anemia crónica'>Anemia crónica</option>
+                  <option value='Silicosis'>Silicosis</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Fecha</label>
+                <input style="width: 185px;" class="datepicker form-control" name="date">
+              </div>
+              <button type="submit" class="btn btn-primary"><b>Registrar</b></button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+      $('input.datepicker').datepicker({
+        format: 'yyyy-mm-dd',
+        orientation: 'bottom'
+      });
+  });
+</script>
+</html>

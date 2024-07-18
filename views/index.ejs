@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+
+  <script src="https://unpkg.com/@popperjs/core@^2.0.0"></script>
+  <script src="/javascripts/jquery-3.2.1.min.js"></script>
+  <script src="/javascripts/bootstrap.js"></script>
+  <script src="/javascripts/bootstrap-datepicker.js"></script>
+  <link rel='stylesheet' href='/stylesheets/bootstrap-datepicker.css' />
+  <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+  <div class="container-fluid">
+
+    <div class="row">
+        <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
+          <div id="brand" class="col-xl-2 col-lg-3 col-md-3">
+            <a class="navbar-brand" href="/home"><b>Bases de Datos</b></a>
+            <button style="float: right;" class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+          <div id="items" class="col-xl-10 col-lg-9 col-md-9">
+            <div class="navbar-collapse collapse" id="navbarColor01" style="">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="/patients"><i style="margin-right: 15.5px; margin-left: 5px;" class="fas fa-user-injured"></i> <b>Pacientes</b></a>
+                </li>
+              </ul>
+            </div>  
+          </div>        
+        </nav>
+    </div>
+
+    <div class="row content">
+      <div class="col-xl-2 col-lg-3 col-md-3 col-12 patient-filter">
+        <div>
+          <h2><b>Filtros</b></h2>
+          <ul class="nav nav-pills flex-column" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link" id="filterByCity-tab" data-toggle="tab" href="#filterByCity" role="tab" aria-controls="filterByCity" aria-selected="true"><i style="margin-right: 11px;" class="fas fa-city"></i> <b>Ciudad</b></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#filterByDiagnosis" role="tab" aria-controls="filterByDiagnosis" aria-selected="false"><i class="fas fa-stethoscope" style="margin-right: 15.5px;"></i> <b>Diagnostico</b></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="contact-tab" data-toggle="tab" href="#filterByDate" role="tab" aria-controls="filterByDate" aria-selected="false"><i style="margin-right: 18px;" class="fas fa-user-md"></i> <b>Especialista</b></a>
+            </li>
+          </ul>
+        </div>
+        <hr>
+        <div class="tab-content" id="myTabContent">
+          
+          <div class="tab-pane fade" id="filterByCity" role="tabpanel" aria-labelledby="home-tab">
+            <form method="POST" action="/patients/filterByCity">
+              <fieldset>
+                <div class="form-group">
+                  <label>Ciudad</label>
+                  <select class="form-control" name="city">
+                    <option value='Badajoz'>Badajoz</option>
+                    <option value='Cuenca'>Cuenca</option>
+                    <option value='Cordoba'>Cordoba</option>
+                    <option value='Barcelona'>Barcelona</option>
+                    <option value='Madrid'>Madrid</option>
+                    <option value='Melilla'>Melilla</option>
+                    <option value='Oviedo'>Oviedo</option>
+                    <option value='Segovia'>Segovia</option>
+                    <option value='Teruel'>Teruel</option>
+                    <option value='Valencia'>Valencia</option>
+                    <option value='Valladolid'>Valladolid</option>
+                    <option value='Vigo'>Vigo</option>
+                    <option value='Zaragoza'>Zaragoza</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary filter-button"><b>Filtrar</b></button>
+              </fieldset>
+            </form>
+          </div>
+
+
+          <div class="tab-pane fade" id="filterByDiagnosis" role="tabpanel" aria-labelledby="home-tab">
+            <form method="POST" action="/patients/filterByDiagnosis">
+              <fieldset>
+                <div class="form-group">
+                  <label>Diagnostico</label>
+                  <select class="form-control" name="diagnosis">
+                    <option value='Resfriado'>Resfriado</option>
+                    <option value='Escorbuto'>Escorbuto</option>
+                    <option value='Fractura de ligamento cruzado'>Fractura de ligamento cruzado</option>
+                    <option value='Esguince de tobillo'>Esguince de tobillo</option>
+                    <option value='Osteoporosis'>Osteoporosis</option>
+                    <option value='Diarrea aguda'>Diarrea aguda</option>
+                    <option value='Síndrome del tunel carpiano'>Síndrome del tunel carpiano</option>
+                    <option value='Arritmia'>Arritmia</option>
+                    <option value='Dermatitis'>Dermatitis</option>
+                    <option value='Anemia crónica'>Anemia crónica</option>
+                    <option value='Silicosis'>Silicosis</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary filter-button"><b>Filtrar</b></button>
+              </fieldset>
+            </form>
+          </div>
+
+
+          <div class="tab-pane fade" id="filterByDate" role="tabpanel" aria-labelledby="home-tab">
+            <form method="POST" action="/patients/filterByDate">
+              <fieldset>
+                <div class="form-group">
+                  <label>Fecha</label>
+                  <div class="input-daterange input-group" id="datepicker">
+                      <input type="text" class="input-sm form-control" name="start" />
+                      <span class="input-group-addon">a</span>
+                      <input type="text" class="input-sm form-control" name="end" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Especialista</label>
+                  <select class="form-control" name="specialist">
+                    <option value='Medico de cabecera'>Medico de cabecera</option>
+                    <option value='Dermatólogo'>Dermatólogo</option>
+                    <option value='Traumatologo'>Traumatologo</option>
+                    <option value='Reumatologo'>Reumatologo</option>
+                    <option value='Cardiologo'>Cardiologo</option>
+                    <option value='Endocrino'>Endocrino</option>
+                    <option value='Neumologo'>Neumologo</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary filter-button"><b>Filtrar</b></button>
+              </fieldset>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-xl-9 col-lg-8 col-md-9 col-sm-12">
+        <div class="row content-info">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/home">Home</a></li>
+              <li class="breadcrumb-item active"><a href="/patients"><b>Pacientes</b></a></li>
+            </ol>
+        </div>
+
+        <% if (patientDeleted) { %>
+          <div class="row content-info pacient-alert"> 
+              <div  class="alert alert-dismissible alert-success">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>Paciente borrado!</strong>
+              </div>
+          </div>
+        <% } %>
+
+        <div class="row content-info">
+          <div class="page-header">
+            <h1 id="tables">Pacientes</h1>
+            <a class="btn btn-primary register" href="/patients/new"><b>Registrar  </b><i class="fas fa-plus"></i></a>
+          </div>
+          <table class="table table-hover">
+            <thead class="bg-secondary">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col" class="d-none d-sm-table-cell">Dni</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% if (patients) { %>
+              <% for(var i=0; i<patients.length; i++) {%>
+                <tr class="click-row" href="/patients/<%= patients[i]._id%>">
+                  <td><%= patients[i]._id%></td>
+                  <td><%= patients[i].name %></td>
+                  <td><%= patients[i].surname  %></td>
+                  <td class="d-none d-sm-table-cell"><%= patients[i].dni %></td>
+                  <td>
+                    <form method="POST" action="/patients/<%= patients[i]._id%>?_method=DELETE">
+                      <a class="btn btn-info" href="/patients/<%= patients[i]._id%>/edit?name=<%= patients[i].name %>&surname=<%= patients[i].surname %>&dni=<%= patients[i].dni %>&city=<%= patients[i].city %>"><i class="fas fa-edit"></i></a>
+                      <a class="btn btn-warning" href="/patients/<%= patients[i]._id%>/history"><i class="fas fa-file-medical"></i></a>
+                      <button type="submit" class="btn delete-patient btn-danger"><i class="far fa-trash-alt"></i></button>
+                    </form>
+                  </td>
+                </tr>
+                <% } %>
+              <% } %>
+            </tbody>
+          </table> 
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $("tbody").on('click', 'tr', function () {
+          window.location = $(this).attr('href');
+      });
+
+      $(".pacient-alert").fadeOut({duration: 3000});
+
+      $('div.input-daterange').datepicker({
+        format: 'yyyy-mm-dd'
+      });
+  });
+</script>
+</html>

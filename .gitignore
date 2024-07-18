@@ -1,0 +1,8 @@
+# Dependency directory
+node_modules
+data
+
+# Debug log from npm
+npm-debug.log
+user.json
+miscapturas/
