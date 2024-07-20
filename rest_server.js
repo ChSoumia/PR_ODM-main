@@ -3,15 +3,19 @@ const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 const path = require("path");
 const PatientController = require("./controllers/patient");
+const dotenv = require("dotenv");
 
 const app = express();
+dotenv.config();
+const port = process.env.PORT || 8001;
+const dbUrl = process.env.MONGODB_URI;
+
+// Conexión a la base de datos MongoDB
 
 const mongoose = require("mongoose");
-(async () => {
+(() => {
   try {
-    const dbUrl =
-      "mongodb+srv://Hospitalbbdd:BDwtDzxMZPNxYztb@cluster0.cl6z6nk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-    await mongoose.connect(dbUrl, {
+    mongoose.connect(dbUrl, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
@@ -133,7 +137,7 @@ app.use(function (err, req, res, next) {
   res.status(500).render("error", { error: err });
 });
 
-const port = parseInt(process.env.PORT || "8001", 10);
+// Start the server
 app.listen(port, function () {
-  console.log("App listening on port: " + 8001);
+  console.log(`Starting server on port ${port}`);
 });
