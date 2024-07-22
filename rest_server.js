@@ -10,7 +10,7 @@ dotenv.config();
 const port = process.env.PORT || 8001;
 const dbUrl = process.env.MONGODB_URI;
 
-// Conexión a la base de datos MongoDB
+//connect to MongoDB
 
 const mongoose = require("mongoose");
 (() => {
